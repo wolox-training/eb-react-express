@@ -107,5 +107,10 @@
   "engines": {
     "node": ">= 10.15.3",
     "npm": ">= 6.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-diff && npm run lint-scss"
+    }
   }
 }
