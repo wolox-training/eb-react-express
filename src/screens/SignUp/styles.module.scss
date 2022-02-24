@@ -1,0 +1,42 @@
+@import '../../scss/variables/colors';
+@import '../../scss/inputs';
+@import '../../scss/buttons';
+
+.auth-container {
+  align-items: center;
+  background-color: $gray;
+  border-top: 3px solid $blue;
+  display: flex;
+  flex-direction: column;
+  margin: 150px auto;
+  max-width: 350px;
+  padding: 20px;
+}
+
+.logo {
+  height: 40px;
+  margin: 20px 20px 20px;
+}
+
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 8px;
+}
+
+.container-form {
+  border-bottom: 3px solid $grey-soft;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.label-input {
+  display: flex;
+  color: $black;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 15px;
+  justify-content: flex-start;
+  margin: 20px 0 10px;
+}
