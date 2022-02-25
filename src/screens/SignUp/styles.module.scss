@@ -32,10 +32,10 @@
 }
 
 .label-input {
+  align-items: flex-start;
   display: flex;
   color: $black;
   flex-direction: column;
-  align-items: flex-start;
   font-size: 15px;
   justify-content: flex-start;
   margin: 20px 0 10px;
