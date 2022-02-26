@@ -5,17 +5,17 @@ export const SIGN_UP_FIELDS: SignUpFields[] = [
     id: 'first_name',
     type: 'text',
     label: 'Nombre',
-    model: 'name'
+    model: 'first-name',
   },
   {
     id: 'last_name',
     type: 'text',
     label: 'Apellido',
-    model: 'lastName'
+    model: 'last-name'
   },
   {
     id: 'email',
-    type: 'text',
+    type: 'email',
     label: 'Email',
     model: 'email'
   },
@@ -26,9 +26,9 @@ export const SIGN_UP_FIELDS: SignUpFields[] = [
     model: 'password'
   },
   {
-    id: 'password_confirmation',
+    id: 'password-confirmation',
     type: 'password',
     label: 'Confirmación de Password',
-    model: 'confirmedPassword'
+    model: 'password_confirmation'
   }
 ];
