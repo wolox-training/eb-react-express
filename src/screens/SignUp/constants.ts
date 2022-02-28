@@ -4,31 +4,31 @@ export const SIGN_UP_FIELDS: SignUpFields[] = [
   {
     id: 'first_name',
     type: 'text',
-    label: 'Nombre',
-    model: 'first-name',
+    label: 'firstName',
+    model: 'first-name'
   },
   {
     id: 'last_name',
     type: 'text',
-    label: 'Apellido',
+    label: 'lastName',
     model: 'last-name'
   },
   {
     id: 'email',
     type: 'email',
-    label: 'Email',
+    label: 'email',
     model: 'email'
   },
   {
     id: 'password',
     type: 'password',
-    label: 'Password',
+    label: 'password',
     model: 'password'
   },
   {
     id: 'password-confirmation',
     type: 'password',
-    label: 'Confirmación de Password',
+    label: 'confirmPassword',
     model: 'password_confirmation'
   }
 ];

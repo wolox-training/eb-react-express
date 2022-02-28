@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
+import i18next from 'i18next';
 
 import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
@@ -21,12 +22,12 @@ function SignUp() {
 
   return (
     <div className={styles.authContainer}>
-      <img className={styles.logo} src={logo} alt="Wolox logo" />
+      <img className={styles.logo} src={logo} alt={i18next.t('SignUp:woloxLogoAlt') as string} />
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
         {fields.map(field => (
           <Fragment key={`fragment-${field.id}`}>
             <label key={`label-${field.id}`} className={styles.labelInput}>
-              {field.label}
+              {i18next.t(`SignUp:${field.label}`)}
             </label>
             <input
               key={`input-${field.id}`}
@@ -34,15 +35,15 @@ function SignUp() {
               type={field.type}
               {...register(`${field.model}` as const, { required: true })}
             />
-            {errors[field.model] && <span className={styles.alert}>Este campo es requerido</span>}
+            {errors[field.model] && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
           </Fragment>
         ))}
         <button className={styles.buttonPrimary} type="submit">
-          Sign up
+          {i18next.t('SignUp:signUp')}
         </button>
       </form>
       <button className={styles.buttonSecondary} type="submit">
-        Login
+        {i18next.t('SignUp:login')}
       </button>
     </div>
   );
