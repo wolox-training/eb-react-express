@@ -1,0 +1,20 @@
+@import './variables/colors';
+
+.button-primary {
+  background-color: $green;
+  border-radius: 10px;
+  color: $white;
+  height: 40px;
+  margin: 20px 0;
+}
+
+.button-secondary {
+  border-radius: 10px;
+  background-color: $gray;
+  border: 3px solid $green;
+  color: $green;
+  font-weight: bold;
+  height: 40px;
+  margin: 20px 0;
+  width: 100%;
+}
