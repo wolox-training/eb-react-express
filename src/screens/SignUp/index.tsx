@@ -1,21 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
 
-import { SIGN_UP_FIELDS } from './constants';
 import styles from './styles.module.scss';
 import logo from './assets/wolox_logo.svg';
+import { User } from './types';
 
 function SignUp() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm<User>();
 
-  const fields = SIGN_UP_FIELDS;
-
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: User): void => {
     const user = { ...data, locale: 'en' };
     console.log({ user });
   };
@@ -24,20 +22,36 @@ function SignUp() {
     <div className={styles.authContainer}>
       <img className={styles.logo} src={logo} alt={i18next.t('SignUp:woloxLogoAlt') as string} />
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
-        {fields.map(field => (
-          <Fragment key={`fragment-${field.id}`}>
-            <label key={`label-${field.id}`} className={styles.labelInput}>
-              {i18next.t(`SignUp:${field.label}`)}
-            </label>
-            <input
-              key={`input-${field.id}`}
-              className={styles.inputPrimary}
-              type={field.type}
-              {...register(`${field.model}` as const, { required: true })}
-            />
-            {errors[field.model] && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
-          </Fragment>
-        ))}
+        <label className={styles.labelInput}>{i18next.t('SignUp:firstName')}</label>
+        <input className={styles.inputPrimary} type="text" {...register('first_name', { required: true })} />
+        {errors.first_name && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
+
+        <label className={styles.labelInput}>{i18next.t('SignUp:lastName')}</label>
+        <input className={styles.inputPrimary} type="text" {...register('last_name', { required: true })} />
+        {errors.last_name && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
+
+        <label className={styles.labelInput}>{i18next.t('SignUp:email')}</label>
+        <input className={styles.inputPrimary} type="email" {...register('email', { required: true })} />
+        {errors.email && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
+
+        <label className={styles.labelInput}>{i18next.t('SignUp:password')}</label>
+        <input
+          className={styles.inputPrimary}
+          type="password"
+          {...register('password', { required: true })}
+        />
+        {errors.password && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
+
+        <label className={styles.labelInput}>{i18next.t('SignUp:confirmPassword')}</label>
+        <input
+          className={styles.inputPrimary}
+          type="password"
+          {...register('password_confirmation', { required: true })}
+        />
+        {errors.password_confirmation && (
+          <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>
+        )}
+
         <button className={styles.buttonPrimary} type="submit">
           {i18next.t('SignUp:signUp')}
         </button>
