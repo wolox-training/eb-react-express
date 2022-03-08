@@ -1,10 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
+import { useMutation } from 'react-query';
+
+import { User } from '../../types/users';
+import { registerUser } from '../../services/users';
 
 import styles from './styles.module.scss';
 import logo from './assets/wolox_logo.svg';
-import { User } from './types';
 
 function SignUp() {
   const {
@@ -12,14 +15,20 @@ function SignUp() {
     handleSubmit,
     formState: { errors }
   } = useForm<User>();
+  const { mutate, error, isError } = useMutation(registerUser, {
+    onSuccess: res => {
+      console.log(res);
+    }
+  });
 
   const onSubmit = (data: User): void => {
     const user = { ...data, locale: 'en' };
-    console.log({ user });
+    mutate(user);
   };
 
   return (
     <div className={styles.authContainer}>
+      {isError && <span className={styles.alert}>{error as string}</span>}
       <img className={styles.logo} src={logo} alt={i18next.t('SignUp:woloxLogoAlt') as string} />
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.labelInput}>{i18next.t('SignUp:firstName')}</label>
