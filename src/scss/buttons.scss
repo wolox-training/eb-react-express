@@ -9,12 +9,15 @@
 }
 
 .button-secondary {
+  align-items: center;
   border-radius: 10px;
   background-color: $gray;
   border: 3px solid $green;
   color: $green;
+  display: flex;
   font-weight: bold;
   height: 40px;
+  justify-content: center;
   margin: 20px 0;
   width: 100%;
 }

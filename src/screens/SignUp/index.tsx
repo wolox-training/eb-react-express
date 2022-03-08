@@ -2,9 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
 import { useMutation } from 'react-query';
+import { Link } from 'react-router-dom';
 
 import { User } from '../../types/users';
 import { registerUser } from '../../services/users';
+import routes from '../../constants/routes';
 
 import styles from './styles.module.scss';
 import logo from './assets/wolox_logo.svg';
@@ -65,9 +67,9 @@ function SignUp() {
           {i18next.t('SignUp:signUp')}
         </button>
       </form>
-      <button className={styles.buttonSecondary} type="submit">
+      <Link className={styles.buttonSecondary} to={routes.unAuth.login}>
         {i18next.t('SignUp:login')}
-      </button>
+      </Link>
     </div>
   );
 }
