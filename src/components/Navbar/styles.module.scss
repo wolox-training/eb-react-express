@@ -1,0 +1,23 @@
+@import '../../scss/variables/colors';
+
+.nav {
+  align-items: center;
+  background-color: $white;
+  border-top: 5px solid $blue;
+  box-shadow: 5px 7px 5px 0px $gray;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  padding: 5px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logo {
+  width: 200px;
+}
+
+.navbar-button {
+ font-size: 22px;
+}
