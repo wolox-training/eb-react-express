@@ -1,8 +1,9 @@
 import React from 'react';
 import i18next from 'i18next';
 
+import logo from '../../assets/wolox_logo.svg';
+
 import styles from './styles.module.scss';
-import logo from './assets/wolox_logo.svg';
 
 type UnAuthWrapperProps = {
   error: string;

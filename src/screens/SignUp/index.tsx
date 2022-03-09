@@ -16,11 +16,13 @@ function SignUp() {
     handleSubmit,
     formState: { errors }
   } = useForm<User>();
-  const history = useHistory();
+
+  const { push } = useHistory();
+
   const { mutate, error, isError } = useMutation(registerUser, {
     onSuccess: res => {
       if (res.ok) {
-        history.push(routes.unAuth.login);
+        push(routes.unAuth.login);
       }
     }
   });
