@@ -2,14 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
 import { useMutation } from 'react-query';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { User } from '../../types/users';
 import { registerUser } from '../../services/users';
 import routes from '../../constants/routes';
-
-import styles from './styles.module.scss';
-import logo from './assets/wolox_logo.svg';
+import UnAuthWrapper from '../../components/UnAuthWrapper';
+import styles from '../../components/UnAuthWrapper/styles.module.scss';
 
 function SignUp() {
   const {
@@ -17,9 +16,12 @@ function SignUp() {
     handleSubmit,
     formState: { errors }
   } = useForm<User>();
+  const history = useHistory();
   const { mutate, error, isError } = useMutation(registerUser, {
     onSuccess: res => {
-      console.log(res);
+      if (res.ok) {
+        history.push(routes.unAuth.login);
+      }
     }
   });
 
@@ -29,9 +31,7 @@ function SignUp() {
   };
 
   return (
-    <div className={styles.authContainer}>
-      {isError && <span className={styles.alert}>{error as string}</span>}
-      <img className={styles.logo} src={logo} alt={i18next.t('SignUp:woloxLogoAlt') as string} />
+    <UnAuthWrapper error={error as string} isError={isError}>
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.labelInput}>{i18next.t('SignUp:firstName')}</label>
         <input className={styles.inputPrimary} type="text" {...register('first_name', { required: true })} />
@@ -70,7 +70,7 @@ function SignUp() {
       <Link className={styles.buttonSecondary} to={routes.unAuth.login}>
         {i18next.t('SignUp:login')}
       </Link>
-    </div>
+    </UnAuthWrapper>
   );
 }
 
