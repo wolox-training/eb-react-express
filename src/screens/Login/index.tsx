@@ -23,7 +23,7 @@ function Login() {
 
   const { mutate, error, isError } = useMutation(loginUser, {
     onSuccess: ({ headers }) => {
-      if (headers) {
+      if (headers && headers['access-token'] && headers.client && headers.uid) {
         const credentials: Credentials = {
           'access-token': headers['access-token'],
           client: headers.client,

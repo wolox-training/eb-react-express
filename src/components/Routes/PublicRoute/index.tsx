@@ -4,13 +4,13 @@ import { Redirect, RouteProps, Route } from 'react-router-dom';
 import SessionService from 'services/SessionService';
 import routes from 'constants/routes';
 
-function PrivateRoute({ children, ...rest }: RouteProps) {
+function PublicRoute({ children, ...rest }: RouteProps) {
   return (
     <Route
       {...rest}
-      render={() => (SessionService.hasSession() ? children : <Redirect to={routes.unAuth.login} />)}
+      render={() => (SessionService.hasSession() ? <Redirect to={routes.auth.home} /> : children)}
     />
   );
 }
 
-export default PrivateRoute;
+export default PublicRoute;
