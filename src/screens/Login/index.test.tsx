@@ -14,9 +14,9 @@ describe('Check login screen', () => {
       </QueryClientProvider>,
       { wrapper: MemoryRouter }
     );
-    const emailInput = utils.getByTestId('email');
-    const passwordInput = utils.getByTestId('password');
-    const submitButton = utils.getByTestId('submit');
+    const emailInput = utils.getByLabelText('SignUp:email');
+    const passwordInput = utils.getByLabelText('SignUp:password');
+    const submitButton = utils.getByRole('button');
     return {
       emailInput,
       passwordInput,

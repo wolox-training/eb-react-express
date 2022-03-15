@@ -42,19 +42,23 @@ function Login() {
   return (
     <UnAuthWrapper error={error as string} isError={isError}>
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
-        <label className={styles.labelInput}>{i18next.t('SignUp:email')}</label>
+        <label className={styles.labelInput} htmlFor="email">
+          {i18next.t('SignUp:email')}
+        </label>
         <input
           className={styles.inputPrimary}
-          data-testid="email"
+          id="email"
           type="email"
           {...register('email', { required: true })}
         />
         {errors.email && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
 
-        <label className={styles.labelInput}>{i18next.t('SignUp:password')}</label>
+        <label className={styles.labelInput} htmlFor="password">
+          {i18next.t('SignUp:password')}
+        </label>
         <input
           className={styles.inputPrimary}
-          data-testid="password"
+          id="password"
           type="password"
           {...register('password', { required: true })}
         />
