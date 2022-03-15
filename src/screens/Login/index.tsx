@@ -16,8 +16,8 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm<User>();
+    formState: { errors, isValid }
+  } = useForm<User>({ mode: 'all' });
 
   const { push } = useHistory();
 
@@ -42,19 +42,29 @@ function Login() {
   return (
     <UnAuthWrapper error={error as string} isError={isError}>
       <form className={styles.containerForm} onSubmit={handleSubmit(onSubmit)}>
-        <label className={styles.labelInput}>{i18next.t('SignUp:email')}</label>
-        <input className={styles.inputPrimary} type="email" {...register('email', { required: true })} />
-        {errors.email && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
-
-        <label className={styles.labelInput}>{i18next.t('SignUp:password')}</label>
+        <label className={styles.labelInput} htmlFor="email">
+          {i18next.t('SignUp:email')}
+        </label>
         <input
           className={styles.inputPrimary}
+          id="email"
+          type="email"
+          {...register('email', { required: true })}
+        />
+        {errors.email && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
+
+        <label className={styles.labelInput} htmlFor="password">
+          {i18next.t('SignUp:password')}
+        </label>
+        <input
+          className={styles.inputPrimary}
+          id="password"
           type="password"
           {...register('password', { required: true })}
         />
         {errors.password && <span className={styles.alert}>{i18next.t('SignUp:requiredField')}</span>}
 
-        <button className={styles.buttonPrimary} type="submit">
+        <button className={styles.buttonPrimary} data-testid="submit" type="submit" disabled={!isValid}>
           {i18next.t('SignUp:login')}
         </button>
       </form>
