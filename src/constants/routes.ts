@@ -4,7 +4,8 @@ const routes = {
     signUp: '/sign-up'
   },
   auth: {
-    home: '/home'
+    home: '/book',
+    detail: '/book/:id'
   }
 };
 
