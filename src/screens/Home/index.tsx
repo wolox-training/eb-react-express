@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, useRouteMatch, Route } from 'react-router-dom';
 
-import BookList from 'screens/BookList';
-import BookDetail from 'screens/BookDetail';
+import BookDetailWithSpinner from 'HOCs/BookDetailWithSpinner';
+import BookListWithSpinner from 'HOCs/BookListWithSpinner';
 
 import Navbar from '../../components/Navbar';
 
@@ -12,8 +12,8 @@ function Home() {
     <>
       <Navbar />
       <Switch>
-        <Route exact path={path} component={BookList} />
-        <Route path={`${path}/:id`} component={BookDetail} />
+        <Route exact path={path} component={BookListWithSpinner} />
+        <Route path={`${path}/:id`} component={BookDetailWithSpinner} />
       </Switch>
     </>
   );

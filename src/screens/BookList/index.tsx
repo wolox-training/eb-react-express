@@ -1,19 +1,18 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import BookCard from 'components/BookCard';
-import { Book } from 'types/book';
-
-import { getBooks } from '../../services/books';
+import { Book, BookListResponse } from 'types/book';
 
 import styles from './styles.module.scss';
 
-function BookList() {
-  const { data } = useQuery('books', getBooks);
+type BookListProp = {
+  data: BookListResponse | undefined;
+};
 
+function BookList({ data }: BookListProp) {
   return (
     <div className={styles.booksContainer}>
-      {data?.data?.page?.map((book: Book) => (
+      {data?.page?.map((book: Book) => (
         <BookCard key={book.id} book={book} />
       ))}
     </div>
